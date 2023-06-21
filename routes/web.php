@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function () {
+    Route::view('/', 'welcome')->name('home');
+});
+
+
+
+
+
+// AMOCLIENT ROUTES
+Route::get('/login', function(){
+	return redirect('/amoclient/redirect');
+})->name('login');
+Route::get('/amoclient/ready', function(){
+	return redirect()->route('home');
 });
