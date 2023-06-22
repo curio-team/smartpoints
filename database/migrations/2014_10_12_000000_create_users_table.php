@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('type');
+            $table->string('api_token', 80)
+                ->unique()
+                ->nullable()
+                ->default(null);
             $table->rememberToken();
             $table->timestamps();
 
