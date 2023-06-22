@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImportExportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::view('/', 'welcome')->name('home');
 });
 
-
+Route::controller(\App\Http\Controllers\ApiTokenController::class)->group(function(){
+    //Route::get('token', 'update');
+});
 
 
 
