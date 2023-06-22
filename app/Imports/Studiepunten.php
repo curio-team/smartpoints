@@ -28,8 +28,13 @@ class Studiepunten implements ToCollection, WithCalculatedFormulas
             $counter = 0;
             $lastSubject = null;
             $subjects = [];
+            $c_punten = null;
             foreach ($row[0] as $subject) {
                 if ($subject != null) {
+                    if ($subject == "C-punten") {
+                        $c_punten = $row[$row1][$counter];
+                        break;
+                    }
                     $lastSubject = $subject;
                     $subjects[$subject] = [
                         "fb" => [],
@@ -52,7 +57,8 @@ class Studiepunten implements ToCollection, WithCalculatedFormulas
                 "totaal_a_punten" => explode(" / ",$row[$row1][6])[1],
                 "behaalde_a_punten" => $row[$row1][5],
                 "totaal_b_punten" => explode(" / ",$row[$row2][6])[1],
-                "behaalde_b_punten" => $row[$row2][5]
+                "behaalde_b_punten" => $row[$row2][5],
+                "behaalde_c_punten" => $c_punten
             ];
             if (StudiepuntenExcel::where('studentennummer', $row[$row1][2])->first() == null) {
                 $user = new StudiepuntenExcel([
