@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ImportExportController;
+
+use App\Http\Controllers\StudiepuntenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,19 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::view('/', 'welcome')->name('home');
+    Route::get('/', [StudiepuntenController::class, 'index']);
 });
 
-Route::controller(\App\Http\Controllers\ApiTokenController::class)->group(function(){
-    //Route::get('token', 'update');
+Route::controller(\App\Http\Controllers\ApiTokenController::class)->group(function () {
+    Route::get('token', 'update');
 });
 
 
 
 // AMOCLIENT ROUTES
-Route::get('/login', function(){
-	return redirect('/amoclient/redirect');
+Route::get('/login', function () {
+    return redirect('/amoclient/redirect');
 })->name('login');
-Route::get('/amoclient/ready', function(){
-	return redirect()->route('home');
+Route::get('/amoclient/ready', function () {
+    return redirect('/');
 });

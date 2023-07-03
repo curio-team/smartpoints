@@ -1,0 +1,146 @@
+.main-wrap {
+    overflow: hidden;
+    position: relative;
+}
+
+.main-bg {
+    opacity: 0.4;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.main-content {
+    position: relative;
+}
+
+
+.logo {
+    visibility: hidden;
+    position: absolute;
+    border-radius: 0 0 10px 0;
+    width: 18rem
+}
+
+.studiepuntenTable {
+    width: 100%;
+    border-collapse: separate;
+    border: 1px solid #004C35;
+    font-size: 0.5rem
+}
+
+.studiepuntenTablehead {
+    background-color: #d4d4d4;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.celBorder,
+.celBorder-top,
+.celBorder-bottom,
+.celBorder-right,
+.celBorder-left {
+    border: 1px solid #004c3594;
+}
+
+.celBorder-right {
+    border-right: 2px solid #004C35;
+}
+
+.celBorder-left {
+    border-left: 2px solid #004C35;
+}
+
+.celBorder-bottom {
+    border-bottom: 3px solid #004C35;
+}
+
+.celBorder-top {
+
+    border-top: 3px solid #004C35;
+}
+
+.redpoint {
+    background-color: #F63030;
+    color: white;
+}
+
+.greenpoint {
+    background-color: #004C35;
+    color: white;
+}
+
+.orangepoint {
+    background-color: #f67530;
+    color: white;
+}
+
+.zero {
+    font-weight: bold;
+    color: #F63030;
+}
+
+.nopoints {
+    color: #707070;
+}
+
+.studiepuntencard {
+    width: 100% !important;
+
+}
+
+.rowcolor {
+    background-color: #03357C6b;
+}
+
+.rowvak {
+    background-color: #d4d4d4;
+}
+
+
+
+@media screen and (min-width: 400px) {
+    .studiepuntencard {
+        width: 80% !important;
+    }
+
+    .studiepuntenTable {
+        font-size: 0.7rem
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .studiepuntencard {
+        width: 35% !important;
+    }
+
+    .studiepuntenTable {
+        font-size: 0.9rem
+    }
+
+    .logo {
+        visibility: visible;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #004C35;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #007e56;
+}

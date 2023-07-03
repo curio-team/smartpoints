@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Imports;
 
 use App\Models\StudiepuntenExcel;
 
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
@@ -20,8 +22,8 @@ class Studiepunten implements ToCollection, WithCalculatedFormulas
         $done = false;
         $currentUser = 0;
         while (!$done) {
-            $row1 = $currentUser*2 + 5;
-            $row2 = $currentUser*2 + 6;
+            $row1 = $currentUser * 2 + 5;
+            $row2 = $currentUser * 2 + 6;
             if (!isset($row[$row1][2])) {
                 break;
             }
@@ -45,18 +47,18 @@ class Studiepunten implements ToCollection, WithCalculatedFormulas
                 if ($lastSubject != null) {
                     $subjects[$lastSubject]["fb"][] = [
                         "f_code" => $row[1][$counter],
-                        "week" => $row[2][$counter],
-                        "totaal_a_punten" => $row[3][$counter],
+                        "week" => $row[3][$counter],
+                        "totaal_a_punten" => $row[4][$counter],
                         "behaalde_a_punten" => $row[$row1][$counter],
                     ];
                 }
-                $counter ++;
+                $counter++;
             }
             $data = [
                 "vakken" => $subjects,
-                "totaal_a_punten" => explode(" / ",$row[$row1][6])[1],
+                "totaal_a_punten" => explode(" / ", $row[$row1][6])[1],
                 "behaalde_a_punten" => $row[$row1][5],
-                "totaal_b_punten" => explode(" / ",$row[$row2][6])[1],
+                "totaal_b_punten" => explode(" / ", $row[$row2][6])[1],
                 "behaalde_b_punten" => $row[$row2][5],
                 "behaalde_c_punten" => $c_punten
             ];
@@ -72,8 +74,7 @@ class Studiepunten implements ToCollection, WithCalculatedFormulas
                 $user->studiepunten = json_encode($data);
                 $user->save();
             }
-            $currentUser ++;
+            $currentUser++;
         }
     }
 }
-?>
