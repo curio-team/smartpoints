@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [StudiepuntenController::class, 'index']);
-});
 
-Route::controller(\App\Http\Controllers\ApiTokenController::class)->group(function () {
-    Route::get('token', 'update');
+    Route::controller(\App\Http\Controllers\ApiTokenController::class)->group(function () {
+        Route::get('token', 'update');
+    });
 });
 
 

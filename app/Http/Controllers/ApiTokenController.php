@@ -16,19 +16,15 @@ class ApiTokenController extends Controller
      */
     public function update(Request $request)
     {
-        $user = Auth::user();
-        if($user != null)
+        if($request->user()->type == 'teacher')
         {
-            if($user->type == 'teacher')
-            {
-                $token = Str::random(80);
+            $token = Str::random(80);
 
-                $request->user()->forceFill([
-                    'api_token' => hash('sha256', $token),
-                ])->save();
+            $request->user()->forceFill([
+                'api_token' => hash('sha256', $token),
+            ])->save();
 
-                return ['token' => $token];
-            }
+            return ['token' => $token];
         }
 
         return 'forbidden';
