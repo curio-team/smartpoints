@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [StudiepuntenController::class, 'index']);
+    Route::post('/student', [StudiepuntenController::class, 'student'])->name("student");
 
     Route::controller(\App\Http\Controllers\ApiTokenController::class)->group(function () {
         Route::get('token', 'update');

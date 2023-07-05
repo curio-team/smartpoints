@@ -21,8 +21,10 @@
 .logo {
     visibility: hidden;
     position: absolute;
+    bottom: 0;
+    right: 0;
     border-radius: 0 0 10px 0;
-    width: 18rem
+    width: 10rem
 }
 
 .studiepuntenTable {

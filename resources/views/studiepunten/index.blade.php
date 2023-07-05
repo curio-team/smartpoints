@@ -3,7 +3,16 @@
         <img src="{{ asset('/resources/SD_logo.svg') }}" alt="logo" />
     </div>
 
-    {{-- @dd($studiepunten) --}}
+    @if(Auth::user()->type == "teacher")
+        <div class="position-absolute w-100 shadow bg-body-secondary p-3">
+            <form action="{{ route('student') }}" method="POST">
+                @csrf
+                <input type="text" name="nummer" placeholder="123456" value="{{ $nummer ?? '' }}">
+                <input type="submit" value="Opzoeken" />
+            </form>
+        </div>
+    @endif
+
     <div class="d-flex justify-content-center align-items-center overflow-hidden" style="height: 100vh">
         <div class="card m-1 studiepuntencard shadow">
             <div class="card-body overflow-auto m-3 p-0">
@@ -91,8 +100,6 @@
                             @endforeach
                         @endforeach
                     </tbody>
-                    <tfoot>
-                    </tfoot>
                 </table>
             </div>
         </div>
