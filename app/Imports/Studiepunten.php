@@ -22,10 +22,11 @@ class Studiepunten implements ToCollection, WithCalculatedFormulas
         $done = false;
         $currentUser = 0;
         while (!$done) {
-            $row1 = $currentUser * 2 + 5;
-            $row2 = $currentUser * 2 + 6;
+            $row1 = $currentUser * 2 + 6;
+            $row2 = $currentUser * 2 + 7;
+
             if (!isset($row[$row1][2])) {
-                break;
+                return response()->json(['no_data_found'], 400);
             }
             $counter = 0;
             $lastSubject = null;

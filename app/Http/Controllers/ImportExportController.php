@@ -18,6 +18,5 @@ class ImportExportController extends Controller
             return response()->json(['upload_file_not_found'], 400);
         }
         Excel::import(new Studiepunten(), $request->file('fileName'));
-
     }
 }
