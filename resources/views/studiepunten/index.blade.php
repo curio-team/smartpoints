@@ -3,7 +3,7 @@
         <img src="{{ asset('/resources/SD_logo.svg') }}" alt="logo" />
     </div>
 
-    @if(Auth::user()->type == "teacher")
+    @if (Auth::user()->type == 'teacher')
         <div class="position-absolute w-100 shadow bg-body-secondary p-3">
             <form action="{{ route('student') }}" method="POST">
                 @csrf
@@ -56,12 +56,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $isSetCpoints = false;
+                        @endphp
                         @foreach ($studiepunten->vakken as $key => $vak)
                             @php
                                 $even = $loop->even;
                             @endphp
                             @foreach ($vak->fb as $fb)
                                 @php
+                                    
                                     $nietInGevuld = $fb->behaalde_a_punten <= -1;
                                 @endphp
                                 <tr class="{{ $even ? '' : 'rowcolor' }}">
@@ -80,9 +84,15 @@
                                             {{ $fb->behaalde_a_punten }}</td>
                                         <td class="celBorder-top celBorder-right" rowspan="{{ count($vak->fb) }}">
                                             {{ $vak->behaalde_b_punten }}</td>
-                                        <td class="celBorder-top " rowspan="{{ count($vak->fb) }}">
-                                            {{ $studiepunten->behaalde_c_punten }}
-                                        </td>
+                                        @if (!$isSetCpoints)
+                                            @php
+                                                $isSetCpoints = !$isSetCpoints;
+                                            @endphp
+
+                                            <td class="celBorder-top " rowspan="100%">
+                                                {{ $studiepunten->behaalde_c_punten }}
+                                            </td>
+                                        @endif
                                     @else
                                         <th class="celBorder {{ $nietInGevuld ? 'nopoints' : '' }}">
                                             {{ $fb->f_code }}</th>
