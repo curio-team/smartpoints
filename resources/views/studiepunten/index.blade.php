@@ -4,7 +4,7 @@
     </div>
 
     @if (Auth::user()->type == 'teacher')
-        <div class="position-absolute w-100 shadow bg-body-secondary p-3">
+        <div class=" w-100 shadow bg-body-secondary p-3" style="height:  4rem">
             <form action="{{ route('student') }}" method="POST">
                 @csrf
                 <input type="text" name="nummer" placeholder="123456" value="{{ $nummer ?? '' }}">
@@ -13,46 +13,57 @@
         </div>
     @endif
 
-    <div class="d-flex justify-content-center align-items-center overflow-hidden" style="height: 100vh">
-        <div class="card m-1 studiepuntencard shadow">
-            <div class="card-body overflow-auto m-3 p-0">
-                <table class=" studiepuntenTable text-center align-middle" cellpadding="0" cellspacing="0">
+    <div class="d-flex justify-content-center align-items-center overflow-hidden m-3">
+        <div class="card studiepuntencard shadow ">
+            <div class="card-body m-3 p-0 position-relative" style="overflow: auto">
+                <table class="studiepuntenTable text-center align-middle" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
                             <th class="studiepuntenTablehead celBorder-top celBorder-bottom celBorder-left"
-                                style="width: 4%" rowspan="2">Vakken
+                                style="width: 4%">Vakken
                             </th>
-                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom "style="width: 4%"
-                                rowspan="2">F-code</th>
-                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom" style="width: 4%"
-                                rowspan="2">Week</th>
-                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom" style="width: 4%"
-                                rowspan="2">Punten</th>
-                            <th class="studiepuntenTablehead celBorder-top celBorder-left" style="width: 4%">A</th>
-                            <th class="studiepuntenTablehead celBorder-top celBorder-right" style="width: 4%">B</th>
-                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom celBorder-right"
-                                rowspan="2" style="width: 5%">C</th>
-                        </tr>
-                        <tr>
+                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom "style="width: 4%">F-code
+                            </th>
+                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom" style="width: 4%">Week</th>
+                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom" style="width: 4%">Punten
+                            </th>
                             @php
                                 $behaalde_a_punten = $studiepunten->behaalde_a_punten / $studiepunten->totaal_a_punten;
                                 $behaalde_b_punten = $studiepunten->behaalde_b_punten / $studiepunten->totaal_b_punten;
                                 
                             @endphp
-                            <th
-                                class="studiepuntenTablehead celBorder-bottom celBorder-left -bottom-3
+                            <th class="studiepuntenTablehead celBorder-top celBorder-left  celBorder-bottom"
+                                style="width: 4%">
+                                <div>
+                                    A
+                                </div>
+                                <div class="
                                 {{ $behaalde_a_punten < 0.79 ? 'redpoint' : '' }}
                                 {{ $behaalde_a_punten >= 0.8 && $behaalde_a_punten < 0.98 ? 'orangepoint' : '' }}
-                                {{ $behaalde_a_punten >= 0.98 ? 'greenpoint' : '' }}
-                            ">
-                                {{ $studiepunten->behaalde_a_punten }}/{{ $studiepunten->totaal_a_punten }}</th>
-                            <th
-                                class="studiepuntenTablehead celBorder-bottom celBorder-right
+                                {{ $behaalde_a_punten >= 0.98 ? 'greenpoint' : '' }}"
+                                    style="border-left: 0; border-right: 0;">
+                                    {{ $studiepunten->behaalde_a_punten }}/{{ $studiepunten->totaal_a_punten }}
+                                </div>
+
+                            </th>
+                            <th class="studiepuntenTablehead celBorder-top celBorder-right  celBorder-bottom"
+                                style="width: 4%">
+                                <div>
+                                    B
+                                </div>
+                                <div class="
                                 {{ $behaalde_b_punten <= 0.79 ? 'redpoint' : '' }}
                                 {{ $behaalde_b_punten >= 0.8 && $behaalde_b_punten <= 0.97 ? 'orangepoint' : '' }}
-                                {{ $behaalde_b_punten >= 0.98 ? 'greenpoint' : '' }}">
-                                {{ $studiepunten->behaalde_b_punten }}/{{ $studiepunten->totaal_b_punten }}</th>
+                                {{ $behaalde_b_punten >= 0.98 ? 'greenpoint' : '' }}"
+                                    style="border-left: 0; border-right: 0;">
+                                    {{ $studiepunten->behaalde_b_punten }}/{{ $studiepunten->totaal_b_punten }}
+                                </div>
 
+                            </th>
+
+                            <th class="studiepuntenTablehead celBorder-top celBorder-bottom celBorder-right"
+                                rowspan="2" style="width: 5%">C</th>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>

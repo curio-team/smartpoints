@@ -14,7 +14,9 @@
 }
 
 .main-content {
+    display: grid;
     position: relative;
+    height: 100vh;
 }
 
 
@@ -38,7 +40,7 @@
     background-color: #d4d4d4;
     position: sticky;
     top: 0;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 .celBorder,
@@ -92,7 +94,7 @@
 
 .studiepuntencard {
     width: 100% !important;
-
+    max-height: 100%;
 }
 
 .rowcolor {
@@ -102,8 +104,6 @@
 .rowvak {
     background-color: #d4d4d4;
 }
-
-
 
 @media screen and (min-width: 400px) {
     .studiepuntencard {
