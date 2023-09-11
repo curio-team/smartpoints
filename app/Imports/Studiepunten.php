@@ -39,11 +39,13 @@ class Studiepunten implements ToCollection, WithCalculatedFormulas
                             break;
                         }
                         $lastSubject = $subject;
-                        $subjects[$subject] = [
-                            "fb" => [],
-                            "totaal_b_punten" => 2,
-                            "behaalde_b_punten" => $row[$row2][$counter]
-                        ];
+                        if(isset($row[$row2])) {
+                            $subjects[$subject] = [
+                                "fb" => [],
+                                "totaal_b_punten" => 2,
+                                "behaalde_b_punten" => $row[$row2][$counter]
+                            ];
+                        }
                     }
                     if ($lastSubject != null) {
                         $subjects[$lastSubject]["fb"][] = [
