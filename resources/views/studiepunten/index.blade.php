@@ -28,9 +28,27 @@
                             <th class="studiepuntenTablehead celBorder-top celBorder-bottom" style="width: 4%">Punten
                             </th>
                             @php
-                                $behaalde_a_punten = $studiepunten->behaalde_a_punten / $studiepunten->totaal_a_punten;
-                                $behaalde_b_punten = $studiepunten->behaalde_b_punten / $studiepunten->totaal_b_punten;
-                                
+                                $first = DateTime::createFromFormat('m/d/Y', '9/4/2023');
+                                $second = DateTime::createFromFormat('m/d/Y', date('m/d/Y', strtotime('now')));
+                                $curWeek = floor($first->diff($second)->days/7) + 1;
+                                foreach ($studiepunten->vakken as $vak) {
+                                    foreach ($vak->fb as $fb) {
+                                        if ($fb->week <= $curWeek) {
+                                            $studiepunten->totaal_a_punten += $fb->totaal_a_punten;
+                                        }
+                                    }
+                                }
+                                    if ($studiepunten->totaal_a_punten == 0) {
+                                        $behaalde_a_punten = 0;
+                                    } else {
+                                        $behaalde_a_punten = $studiepunten->behaalde_a_punten / $studiepunten->totaal_a_punten;
+                                    }
+                                    if ($studiepunten->totaal_b_punten == 0) {
+                                        $behaalde_b_punten = 0;
+                                    } else {
+                                        $behaalde_b_punten = $studiepunten->behaalde_b_punten / $studiepunten->totaal_b_punten;
+                                    }
+
                             @endphp
                             <th class="studiepuntenTablehead celBorder-top celBorder-left  celBorder-bottom"
                                 style="width: 4%">
@@ -76,7 +94,7 @@
                             @endphp
                             @foreach ($vak->fb as $fb)
                                 @php
-                                    
+
                                     $nietInGevuld = $fb->behaalde_a_punten <= -1;
                                 @endphp
                                 <tr class="{{ $even ? '' : 'rowcolor' }}">
