@@ -11,7 +11,9 @@ class StudiepuntenController extends Controller
 {
     public function index()
     {
-        $studiepunten = StudiepuntenExcel::where('studentennummer', Auth::user()->id)->first();
+        $nr = str_replace("i", "", Auth::user()->id);
+        $nr = str_replace("D", "", Auth::user()->id);
+        $studiepunten = StudiepuntenExcel::where('studentennummer', $nr)->first();
         if (empty($studiepunten)) return view('studiepunten.nietGevonden');
         return view('studiepunten.index', ['studiepunten' => json_decode($studiepunten->studiepunten)]);
     }
