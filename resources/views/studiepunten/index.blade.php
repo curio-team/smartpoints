@@ -30,7 +30,7 @@
                             @php
                                 $first = DateTime::createFromFormat('m/d/Y', '9/4/2023');
                                 $second = DateTime::createFromFormat('m/d/Y', date('m/d/Y', strtotime('now')));
-                                $curWeek = floor($first->diff($second)->days/7) + 1;
+                                $curWeek = floor($first->diff($second)->days / 7) + 1;
                                 foreach ($studiepunten->vakken as $vak) {
                                     foreach ($vak->fb as $fb) {
                                         if ($fb->week <= $curWeek) {
@@ -38,17 +38,17 @@
                                         }
                                     }
                                 }
-                                    if ($studiepunten->totaal_a_punten == 0) {
-                                        $behaalde_a_punten = 0;
-                                    } else {
-                                        $behaalde_a_punten = $studiepunten->behaalde_a_punten / $studiepunten->totaal_a_punten;
-                                    }
-                                    if ($studiepunten->totaal_b_punten == 0) {
-                                        $behaalde_b_punten = 0;
-                                    } else {
-                                        $behaalde_b_punten = $studiepunten->behaalde_b_punten / $studiepunten->totaal_b_punten;
-                                    }
-
+                                if ($studiepunten->totaal_a_punten == 0) {
+                                    $behaalde_a_punten = 0;
+                                } else {
+                                    $behaalde_a_punten = $studiepunten->behaalde_a_punten / $studiepunten->totaal_a_punten;
+                                }
+                                if ($studiepunten->totaal_b_punten == 0) {
+                                    $behaalde_b_punten = 0;
+                                } else {
+                                    $behaalde_b_punten = $studiepunten->behaalde_b_punten / $studiepunten->totaal_b_punten;
+                                }
+                                
                             @endphp
                             <th class="studiepuntenTablehead celBorder-top celBorder-left  celBorder-bottom"
                                 style="width: 4%">
@@ -56,7 +56,7 @@
                                     A
                                 </div>
                                 <div class="
-                                {{ $behaalde_a_punten < 0.79 ? 'redpoint' : '' }}
+                                {{ $behaalde_a_punten < 0.79 && !($studiepunten->totaal_a_punten === 0) ? 'redpoint' : '' }}
                                 {{ $behaalde_a_punten >= 0.8 && $behaalde_a_punten < 0.98 ? 'orangepoint' : '' }}
                                 {{ $behaalde_a_punten >= 0.98 ? 'greenpoint' : '' }}"
                                     style="border-left: 0; border-right: 0;">
@@ -70,7 +70,7 @@
                                     B
                                 </div>
                                 <div class="
-                                {{ $behaalde_b_punten <= 0.79 ? 'redpoint' : '' }}
+                                {{ $behaalde_b_punten <= 0.79 && !($studiepunten->totaal_b_punten === 0) ? 'redpoint' : '' }}
                                 {{ $behaalde_b_punten >= 0.8 && $behaalde_b_punten <= 0.97 ? 'orangepoint' : '' }}
                                 {{ $behaalde_b_punten >= 0.98 ? 'greenpoint' : '' }}"
                                     style="border-left: 0; border-right: 0;">
@@ -94,7 +94,7 @@
                             @endphp
                             @foreach ($vak->fb as $fb)
                                 @php
-
+                                    
                                     $nietInGevuld = $fb->behaalde_a_punten <= -1;
                                 @endphp
                                 <tr class="{{ $even ? '' : 'rowcolor' }}">
