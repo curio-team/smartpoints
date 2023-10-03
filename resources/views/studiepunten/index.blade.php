@@ -28,16 +28,6 @@
                             <th class="studiepuntenTablehead celBorder-top celBorder-bottom" style="width: 4%">Punten
                             </th>
                             @php
-                                $first = DateTime::createFromFormat('m/d/Y', '9/4/2023');
-                                $second = DateTime::createFromFormat('m/d/Y', date('m/d/Y', strtotime('now')));
-                                $curWeek = floor($first->diff($second)->days / 7) + 1;
-                                foreach ($studiepunten->vakken as $vak) {
-                                    foreach ($vak->fb as $fb) {
-                                        if ($fb->week <= $curWeek) {
-                                            $studiepunten->totaal_a_punten += $fb->totaal_a_punten;
-                                        }
-                                    }
-                                }
                                 if ($studiepunten->totaal_a_punten == 0) {
                                     $behaalde_a_punten = 0;
                                 } else {
