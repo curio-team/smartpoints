@@ -92,12 +92,12 @@
                                         <th class="celBorder-top celBorder-left rowvak" scope="col-1"
                                             rowspan="{{ count($vak->fb) }}">
                                             {{ $key }}</th>
-                                        <th class="celBorder-top {{ $nietInGevuld ? 'nopoints' : '' }}">
+                                        <th class="celBorder-top {{ $nietInGevuld ? 'nopoints' : '' }}" style="font-family: monospace; font-size: 15px;">
                                             {{ $fb->f_code }}</th>
                                         <th class="celBorder-top {{ $nietInGevuld ? 'nopoints' : '' }}">
-                                            {{ $fb->week }}</th>
+                                            <span style="font-weight: normal;">Wk</span> {{ str_pad($fb->week, 2, "0", STR_PAD_LEFT) }}</th>
                                         <th class="celBorder-top {{ $nietInGevuld ? 'nopoints' : '' }}">
-                                            {{ $fb->totaal_a_punten }}</th>
+                                            {{ $fb->totaal_a_punten }} <span style="font-weight: normal;">pts</span></th>
                                         <td
                                             class="celBorder-top celBorder-left {{ $fb->behaalde_a_punten <= 0 ? 'zero' : '' }}">
                                             {{ $fb->behaalde_a_punten }}</td>
@@ -113,12 +113,12 @@
                                             </td>
                                         @endif
                                     @else
-                                        <th class="celBorder {{ $nietInGevuld ? 'nopoints' : '' }}">
+                                        <th class="celBorder {{ $nietInGevuld ? 'nopoints' : '' }}" style="font-family: monospace; font-size: 15px;">
                                             {{ $fb->f_code }}</th>
                                         <th class="celBorder {{ $nietInGevuld ? 'nopoints' : '' }}">
-                                            {{ $fb->week }}</th>
+                                            <span style="font-weight: normal;">Wk</span> {{ str_pad($fb->week, 2, "0", STR_PAD_LEFT) }}</th>
                                         <th class="celBorder {{ $nietInGevuld ? 'nopoints' : '' }}">
-                                            {{ $fb->totaal_a_punten }}</th>
+                                            {{ $fb->totaal_a_punten }} <span style="font-weight: normal;">pts</span></th>
                                         <td
                                             class="celBorder celBorder-left
                                         {{ $fb->behaalde_a_punten <= 0 ? 'zero' : '' }}
